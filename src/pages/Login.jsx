@@ -18,19 +18,19 @@ function Login() {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        try {
-            await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, formData);
-            login(res.data.user, res.data.token);
-            toast.success("Logged in successfully! 🎉");
-            navigate("/");
-        } catch (error) {
-            toast.error(error.response?.data?.message || "Something went wrong");
-        } finally {
-            setLoading(false);
-        }
-    };
+    e.preventDefault();
+    setLoading(true);
+    try {
+        const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, formData); // ✅ res add kiya, /login kiya
+        login(res.data.user, res.data.token);
+        toast.success("Logged in successfully! 🎉");
+        navigate("/");
+    } catch (error) {
+        toast.error(error.response?.data?.message || "Something went wrong");
+    } finally {
+        setLoading(false);
+    }
+};
 
     return (
         <div className="min-h-screen flex items-center justify-center">
