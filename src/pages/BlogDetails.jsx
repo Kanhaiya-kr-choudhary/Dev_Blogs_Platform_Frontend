@@ -14,7 +14,7 @@ function BlogDetail() {
     useEffect(() => {
         const fetchBlog = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/blogs/${id}`);
+                 const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`);
                 setBlog(res.data);
             } catch (error) {
                 toast.error("Blog nahi mila!");
@@ -29,7 +29,7 @@ function BlogDetail() {
     const handleDelete = async () => {
         if (!window.confirm("Delete karna chahte ho?")) return;
         try {
-            await axios.delete(`http://localhost:5000/api/blogs/${id}`, {
+           await axios.delete(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             toast.success("Blog deleted ✅");
