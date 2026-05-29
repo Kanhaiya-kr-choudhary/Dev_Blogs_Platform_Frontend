@@ -86,7 +86,7 @@ function BlogDetail() {
             />
 
             {/* Delete Button - only author dekhe */}
-            {user?.id === blog.author?._id && (
+           {(user?.id === blog.author?._id || user?.role === "admin") && (
                 <button
                     onClick={handleDelete}
                     className="mt-10 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600"
